@@ -1,0 +1,68 @@
+{
+  "name": "ww1",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ww1/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/ww1",
+        "compiler": "babel",
+        "main": "apps/ww1/src/main.ts",
+        "tsConfig": "apps/ww1/tsconfig.app.json",
+        "webpackConfig": "apps/ww1/webpack.config.js",
+        "assets": ["apps/ww1/src/favicon.ico", "apps/ww1/src/assets"],
+        "index": "apps/ww1/src/index.html",
+        "baseHref": "/",
+        "styles": ["apps/ww1/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/ww1/src/environments/environment.ts",
+              "with": "apps/ww1/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "options": {
+        "buildTarget": "ww1:build"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ww1:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/ww1"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/ww1"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ww1/**/*.ts"]
+      }
+    }
+  }
+}
