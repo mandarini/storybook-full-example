@@ -14,7 +14,7 @@ module.exports = {
     {
       name: 'storybook-addon-next',
       options: {
-        nextConfigPath: path.resolve(__dirname, '../next.config.js'),
+        nextConfigPath: '../next.config.js',
       },
     },
   ],
