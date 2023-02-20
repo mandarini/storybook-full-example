@@ -1,78 +1,74 @@
 {
-  "name": "wv1",
+  "name": "nexttwo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/nexttwo",
   "projectType": "application",
-  "sourceRoot": "apps/wv1/src",
-  "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/vite:build",
+      "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/wv1"
+        "root": "apps/nexttwo",
+        "outputPath": "dist/apps/nexttwo"
       },
       "configurations": {
         "development": {
-          "mode": "development"
+          "outputPath": "apps/nexttwo"
         },
-        "production": {
-          "mode": "production"
-        }
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nrwl/vite:dev-server",
+      "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "wv1:build"
+        "buildTarget": "nexttwo:build",
+        "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "wv1:build:development",
-          "hmr": true
+          "buildTarget": "nexttwo:build:development",
+          "dev": true
         },
         "production": {
-          "buildTarget": "wv1:build:production",
-          "hmr": false
+          "buildTarget": "nexttwo:build:production",
+          "dev": false
         }
       }
     },
-    "preview": {
-      "executor": "@nrwl/vite:preview-server",
-      "defaultConfiguration": "development",
+    "export": {
+      "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "wv1:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "wv1:build:development"
-        },
-        "production": {
-          "buildTarget": "wv1:build:production"
-        }
+        "buildTarget": "nexttwo:build:production"
       }
     },
     "test": {
-      "executor": "@nrwl/vite:test",
-      "outputs": ["coverage/apps/wv1"],
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/wv1"
+        "jestConfig": "apps/nexttwo/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/wv1/**/*.ts"]
+        "lintFilePatterns": ["apps/nexttwo/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "port": 4400,
-        "configDir": "apps/wv1/.storybook"
+        "configDir": "apps/nexttwo/.storybook"
       },
       "configurations": {
         "ci": {
@@ -84,8 +80,8 @@
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storybook/wv1",
-        "configDir": "apps/wv1/.storybook"
+        "outputDir": "dist/storybook/nexttwo",
+        "configDir": "apps/nexttwo/.storybook"
       },
       "configurations": {
         "ci": {
@@ -93,5 +89,6 @@
         }
       }
     }
-  }
+  },
+  "tags": []
 }
