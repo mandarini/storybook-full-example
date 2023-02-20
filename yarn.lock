@@ -3436,6 +3436,26 @@
     recast "^0.23.1"
     util "^0.12.4"
 
+"@storybook/codemod@^7.0.0-beta.50":
+  version "7.0.0-beta.51"
+  resolved "https://registry.yarnpkg.com/@storybook/codemod/-/codemod-7.0.0-beta.51.tgz#464de44e81954e5b1b8d9d5a70031dbe96fe2bd8"
+  integrity sha512-xYhui5CTOh5fypu9zY/nnEQZHNDd4bjzDlhNR7llrRNujkbHpL5swjkjI9A4qlggNYMLRLlwDHb7eIjMqzzx+A==
+  dependencies:
+    "@babel/core" "^7.20.2"
+    "@babel/preset-env" "^7.20.2"
+    "@babel/types" "^7.20.7"
+    "@storybook/csf" next
+    "@storybook/csf-tools" "7.0.0-beta.51"
+    "@storybook/node-logger" "7.0.0-beta.51"
+    "@storybook/types" "7.0.0-beta.51"
+    cross-spawn "^7.0.3"
+    globby "^11.0.2"
+    jscodeshift "^0.14.0"
+    lodash "^4.17.21"
+    prettier "^2.8.0"
+    recast "^0.23.1"
+    util "^0.12.4"
+
 "@storybook/components@7.0.0-beta.50":
   version "7.0.0-beta.50"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-7.0.0-beta.50.tgz#ea1aebc07343c03ce57a42524eff4b3b0807f1c4"

@@ -1,4 +1,4 @@
-import { moduleMetadata, Story, Meta } from '@storybook/angular';
+import { moduleMetadata, Meta } from '@storybook/angular';
 import { NxWelcomeComponent } from './nx-welcome.component';
 
 export default {
@@ -11,9 +11,10 @@ export default {
   ],
 } as Meta<NxWelcomeComponent>;
 
-const Template: Story<NxWelcomeComponent> = (args: NxWelcomeComponent) => ({
-  props: args,
-});
+export const Primary = {
+  render: (args: NxWelcomeComponent) => ({
+    props: args,
+  }),
 
-export const Primary = Template.bind({});
-Primary.args = {};
+  args: {},
+};
