@@ -1,23 +1,13 @@
 const path = require('path');
-
 module.exports = {
-  core: { builder: 'webpack5' },
-  stories: [
-    '../components/**/*.stories.mdx',
-    '../components/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
-  addons: [
-    '@storybook/addon-essentials',
-    '@nrwl/react/plugins/storybook',
-
-    'storybook-addon-swc',
-    {
-      name: 'storybook-addon-next',
-      options: {
-        nextConfigPath: '../next.config.js',
-      },
-    },
-  ],
+  stories: ['../components/**/*.stories.mdx', '../components/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-essentials', '@nrwl/react/plugins/storybook', 'storybook-addon-swc'],
+  framework: {
+    name: '@storybook/nextjs',
+    options: {
+      nextConfigPath: '../next.config.js'
+    }
+  }
 };
 
 // To customize your webpack configuration you can use the webpackFinal field.
