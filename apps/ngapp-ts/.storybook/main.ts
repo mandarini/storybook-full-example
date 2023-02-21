@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: ['@storybook/addon-essentials'],
-} as StorybookConfig;
+} ;
 
 module.exports = config;
 

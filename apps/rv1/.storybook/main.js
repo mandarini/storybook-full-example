@@ -1,22 +1,25 @@
-const { mergeConfig } = require('vite');
-const viteTsConfigPaths = require('vite-tsconfig-paths').default;
+const {
+  mergeConfig
+} = require('vite');
 
 module.exports = {
-  core: { builder: '@storybook/builder-vite' },
-  stories: [
-    '../src/app/**/*.stories.mdx',
-    '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/app/**/*.stories.mdx', '../src/app/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
-  async viteFinal(config, { configType }) {
+  async viteFinal(config, {
+    configType
+  }) {
     return mergeConfig(config, {
-      plugins: [
-        viteTsConfigPaths({
-          root: '../../../',
-        }),
-      ],
+      
     });
   },
+  framework: {
+    name: '@storybook/react-vite',
+    options: {
+                      builder: {
+                        viteConfigPath: 'apps/rv1/vite.config.ts',
+                      },
+                      }
+  }
 };
 
 // To customize your Vite configuration you can use the viteFinal field.
