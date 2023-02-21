@@ -1,22 +1,17 @@
-import type { StorybookConfig } from '@storybook/core-common';
-
+import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
-
-
 const config: StorybookConfig = {
-  core: { builder: '@storybook/builder-vite' },
-  stories: [
-    '../src/app/**/*.stories.mdx',
-    '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  core: {},
+  stories: ['../src/app/**/*.stories.mdx', '../src/app/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
   async viteFinal(config: any) {
-    return mergeConfig(config, {
-      
-    });
+    return mergeConfig(config, {});
   },
-} ;
-
+  framework: {
+    name: '@storybook/react-vite',
+    options: {}
+  }
+};
 module.exports = config;
 
 // To customize your Vite configuration you can use the viteFinal field.

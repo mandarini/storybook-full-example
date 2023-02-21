@@ -1,14 +1,13 @@
-import type { StorybookConfig } from '@storybook/core-common';
-
+import type { StorybookConfig } from '@storybook/angular';
 const config: StorybookConfig = {
-  core: { builder: 'webpack5' },
-  stories: [
-    '../src/app/**/*.stories.mdx',
-    '../src/app/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  core: {},
+  stories: ['../src/app/**/*.stories.mdx', '../src/app/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-essentials'],
-} ;
-
+  framework: {
+    name: '@storybook/angular',
+    options: {}
+  }
+};
 module.exports = config;
 
 // To customize your webpack configuration you can use the webpackFinal field.
