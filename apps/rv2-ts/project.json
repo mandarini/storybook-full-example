@@ -1,0 +1,99 @@
+{
+  "name": "rv2-ts",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/rv2-ts/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/rv2-ts"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rv2-ts:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rv2-ts:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "rv2-ts:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nrwl/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "rv2-ts:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "rv2-ts:build:development"
+        },
+        "production": {
+          "buildTarget": "rv2-ts:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nrwl/vite:test",
+      "outputs": ["coverage/apps/rv2-ts"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/rv2-ts"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/rv2-ts/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/rv2-ts/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/rv2-ts",
+        "configDir": "apps/rv2-ts/.storybook",
+        "uiFramework": "@storybook/react"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
