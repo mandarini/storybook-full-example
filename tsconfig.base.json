@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@sbmigrat/rlv1": ["libs/rlv1/src/index.ts"],
+      "@sbmigrat/rlv2": ["libs/rlv2/src/index.ts"],
+      "@sbmigrat/rlv3": ["libs/rlv3/src/index.ts"],
+      "@sbmigrat/ui/rlv4": ["libs/ui/rlv4/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
