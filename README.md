@@ -1,28 +1,89 @@
-# Test `sb automigrate`
+# Show React + Vite deep imports and `vite-tsconfig-paths` plugin
 
-This is a Nx workspace which contains the following projects:
+Working on the latest version of Nx. Let's focus on the project `rv1`, which is a React application using Vite. It's set up with Storybook, and the `@storybook/builder-vite`.
 
-- A [Next.js application](apps/nextapp) with [Storybook configuration](apps/nextapp/.storybook/main.js)
-- An [Angular application](apps/ngapp) with [Storybook configuration](apps/ngapp/.storybook/main.js)
-- A [React + Vite application](apps/rv1) with [Storybook configuration](apps/rv1/.storybook/main.js)
-- A [React + Webpack application](apps/rw1) with [Storybook configuration](apps/rw1/.storybook/main.js)
-- A [Web Components + Vite application](apps/wv1) with [Storybook configuration](apps/wv1/.storybook/main.js)
-- A [Web Components + Webpack application](apps/ww1) with [Storybook configuration](apps/ww1/.storybook/main.js)
+## `.storybook/main.js` Vite settings
 
-The whole project is using the latest version of Nx and Storybook version `6.5.16`.
+Let's take a look at the [apps/rv1/.storybook/main.js](apps/rv1/.storybook/main.js) file.
+
+```js
+...
+  async viteFinal(config, { configType }) {
+    return mergeConfig(config, {
+      plugins: [
+        viteTsConfigPaths({
+          root: '../../../',
+        }),
+      ],
+...
+```
+
+Project `rv1` depends on library `rlv1` (React Library using Vite + Storybook with Vite), which depends on `rlv2` which depends on `rlv3` which depends on `ui-rlv4`.
+
+We can take a look at all the `.storybook/main.js` files of these projects, and we can observe that the `root` of the `viteTsConfigPaths` plugin is always relative to the root of the workspace.
+
+Now let's see how this works:
 
 ## Install dependencies
 
+Please remember to use Node 16, because the `@storybook/builder-vite` does not work with Node 18.
+
 Run `yarn` to install all dependencies.
 
-## Try to migrate
+## Run Storybook and Build Storybook
 
-I try to migrate Storybook using `sb automigrate` using my local Storybook build like this:
+We can successfully run and build Storybook for each of these projects. Let's try:
 
+### For `rv1`
+
+```bash
+npx nx storybook rv1
 ```
-sb automigrate --config-dir="apps/nextapp/.storybook"
+
+```bash
+npx nx build-storybook rv1
 ```
 
-As an example, I am first trying to migrate the Next.js application.
+### For `rlv1`
 
-I get a message saying that "No migrations were applicable to your project".
+```bash
+npx nx storybook rlv1
+```
+
+```bash
+npx nx build-storybook rlv1
+```
+
+### For `rlv2`
+
+```bash
+npx nx storybook rlv2
+```
+
+```bash
+npx nx build-storybook rlv2
+```
+
+### For `rlv3`
+
+```bash
+npx nx storybook rlv3
+```
+
+```bash
+npx nx build-storybook rlv3
+```
+
+### For `ui-rlv4`
+
+```bash
+npx nx storybook ui-rlv4
+```
+
+```bash
+npx nx build-storybook ui-rlv4
+```
+
+## Result
+
+All of the above commands run successfully. Which means that the `viteTsConfigPaths` plugin works as expected, and resolves the paths correctly.
